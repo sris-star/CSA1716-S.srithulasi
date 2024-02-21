@@ -1,0 +1,41 @@
+from collections import deque
+
+# Function to find all the states reachable from the current state
+def find_next_states(state, capacities):
+    next_states = []
+    for i in range(len(state)):
+        for j in range(len(state)):
+            if i != j:
+                next_state = list(state)
+                amount_to_pour = min(state[i], capacities[j] - state[j])
+                next_state[i] -= amount_to_pour
+                next_state[j] += amount_to_pour
+                next_states.append(tuple(next_state))
+    return next_states
+
+# Function to solve the water jug problem using BFS
+def solve_water_jug(capacities, target):
+    visited = set()
+    queue = deque([(0, 0)])  # Starting state: both jugs empty
+    
+    while queue:
+        current_state = queue.popleft()
+        if current_state == target:
+            return True
+        
+        visited.add(current_state)
+        next_states = find_next_states(current_state, capacities)
+        
+        for next_state in next_states:
+            if next_state not in visited:
+                queue.append(next_state)
+    
+    return False
+
+# Example usage
+capacities = (4, 3)  # Capacities of two jugs
+target = (2, 0)      # Target state (2 liters in the first jug)
+if solve_water_jug(capacities, target):
+    print("Solution exists.")
+else:
+    print("No solution exists.")
