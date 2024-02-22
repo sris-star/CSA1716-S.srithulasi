@@ -1,0 +1,55 @@
+class MapColoring:
+    def __init__(self, vertices, edges, colors):
+        self.vertices = vertices
+        self.edges = edges
+        self.colors = colors
+        self.color_assignment = {}
+
+    def is_safe(self, vertex, color):
+        for neighbor in self.edges[vertex]:
+            if neighbor in self.color_assignment and self.color_assignment[neighbor] == color:
+                return False
+        return True
+
+    def backtracking(self, vertex):
+        if vertex == len(self.vertices):
+            return True
+
+        for color in self.colors:
+            if self.is_safe(self.vertices[vertex], color):
+                self.color_assignment[self.vertices[vertex]] = color
+                if self.backtracking(vertex + 1):
+                    return True
+                del self.color_assignment[self.vertices[vertex]]
+
+        return False
+
+    def solve(self):
+        if self.backtracking(0):
+            return self.color_assignment
+        else:
+            return None
+
+# Example usage:
+vertices = ['WA', 'NT', 'SA', 'Q', 'NSW', 'V', 'T']
+edges = {
+    'WA': ['NT', 'SA'],
+    'NT': ['WA', 'SA', 'Q'],
+    'SA': ['WA', 'NT', 'Q', 'NSW', 'V'],
+    'Q': ['NT', 'SA', 'NSW'],
+    'NSW': ['Q', 'SA', 'V'],
+    'V': ['SA', 'NSW'],
+    'T': []
+}
+colors = ['red', 'green', 'blue']
+
+map_coloring = MapColoring(vertices, edges, colors)
+color_assignment = map_coloring.solve()
+
+if color_assignment:
+    print("Map coloring solution:")
+    for vertex, color in color_assignment.items():
+        print(f"{vertex}: {color}")
+else:
+    print("No solution exists.")
+
