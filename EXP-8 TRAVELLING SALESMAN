@@ -1,0 +1,30 @@
+from itertools import permutations
+
+def calculate_distance(points, order):
+    total_distance = 0
+    num_points = len(order)
+    for i in range(num_points):
+        start_point = points[order[i]]
+        end_point = points[order[(i + 1) % num_points]]
+        total_distance += ((end_point[0] - start_point[0]) ** 2 + 
+                           (end_point[1] - start_point[1]) ** 2) ** 0.5
+    return total_distance
+
+def traveling_salesman_brute_force(points):
+    num_points = len(points)
+    min_distance = float('inf')
+    min_path = None
+
+    for order in permutations(range(num_points)):
+        distance = calculate_distance(points, order)
+        if distance < min_distance:
+            min_distance = distance
+            min_path = order
+
+    return min_path, min_distance
+
+# Example usage:
+points = [(0, 0), (1, 2), (3, 1), (5, 3)]
+optimal_path, min_distance = traveling_salesman_brute_force(points)
+print("Optimal path:", optimal_path)
+print("Minimum distance:", min_distance)
