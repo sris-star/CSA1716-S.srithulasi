@@ -1,0 +1,15 @@
+% Facts about birds
+bird(robin).
+bird(sparrow).
+bird(blue_jay).
+bird(cardinal).
+bird(pigeon).
+bird(crow).
+bird(hawk).
+
+% Rules to check if a bird can be found
+can_find(Bird) :- bird(Bird).
+
+% Example queries
+% ?- can_find(robin).
+% ?- can_find(penguin).
