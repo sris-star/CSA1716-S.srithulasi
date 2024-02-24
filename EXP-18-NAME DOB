@@ -1,0 +1,12 @@
+% Facts about individuals' names and dates of birth (DOB)
+dob(a, '1990-05-15').
+dob(d, '1985-09-20').
+dob(b, '1995-02-10').
+
+% Queries to retrieve information
+name_dob(Name, DOB) :- dob(Name, DOB).
+
+% Example queries:
+% ?- name_dob(a, DOB).
+% ?- name_dob(b, DOB).
+% ?- name_dob(d, DOB).
