@@ -1,0 +1,38 @@
+% Teacher relationships
+teacher(mr_smith).
+teacher(mrs_jones).
+teacher(mr_doe).
+
+% Student relationships
+student(john).
+student(sarah).
+student(mike).
+
+% Subject relationships
+subject(math).
+subject(science).
+subject(history).
+
+% Course codes relationships
+course_code(math, 101).
+course_code(science, 102).
+course_code(history, 103).
+
+% Teacher teaches subject
+teaches(mr_smith, math).
+teaches(mrs_jones, science).
+teaches(mr_doe, history).
+
+% Student enrolled in subject
+enrolled(john, math).
+enrolled(sarah, science).
+enrolled(mike, history).
+
+% Relationship between student, teacher, subject, and course code
+student_teacher_subject_code(Student, Teacher, Subject, Code) :-
+    student(Student),
+    teacher(Teacher),
+    subject(Subject),
+    course_code(Subject, Code),
+    teaches(Teacher, Subject),
+    enrolled(Student, Subject).
