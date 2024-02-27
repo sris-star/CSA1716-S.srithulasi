@@ -1,0 +1,28 @@
+% Define facts
+% The facts represent relationships between different items.
+
+connected_to('a', 'b').
+connected_to('b', 'c').
+connected_to('c', 'd').
+connected_to('e', 'f').
+connected_to('f', 'g').
+connected_to('g', 'h').
+connected_to('h', 'i').
+connected_to('i', 'j').
+connected_to('k', 'l').
+connected_to('l', 'm').
+
+% Define rules
+% The rules represent transitive relationships between items.
+
+connected(X, Y) :-
+    connected_to(X, Y).
+connected(X, Y) :-
+    connected_to(X, Z),
+    connected(Z, Y).
+
+% Define the goal predicate
+% This predicate defines the goal we want to achieve.
+
+goal_connected(X, Y) :-
+    connected(X, Y).
