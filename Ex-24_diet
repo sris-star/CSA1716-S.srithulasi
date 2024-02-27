@@ -1,0 +1,15 @@
+% Facts about diseases and their corresponding diet plans
+diet_plan(diabetes, 'Diabetes-friendly diet includes low glycemic index foods, such as whole grains, vegetables, fruits, lean protein, and healthy fats. Avoid sugary beverages and processed foods.').
+diet_plan(hypertension, 'Hypertension-friendly diet includes foods low in sodium and high in potassium, such as fruits, vegetables, whole grains, and lean protein. Limit intake of processed foods, salty snacks, and high-sodium condiments.').
+diet_plan(high_cholesterol, 'High cholesterol-friendly diet includes foods low in saturated fats and cholesterol, such as fruits, vegetables, whole grains, lean protein, and healthy fats like olive oil and nuts. Avoid trans fats and limit intake of red meat, full-fat dairy, and fried foods.').
+diet_plan(ibs, 'IBS-friendly diet includes low-FODMAP foods, such as certain fruits, vegetables, grains, and proteins. Avoid high-FODMAP foods like garlic, onions, wheat, and dairy.').
+diet_plan(celiac_disease, 'Celiac disease-friendly diet excludes gluten-containing foods, such as wheat, barley, rye, and products made from these grains. Focus on naturally gluten-free foods like fruits, vegetables, lean protein, and gluten-free grains like quinoa and rice.').
+
+% Predicate to suggest a diet plan based on disease
+suggest_diet(Disease) :-
+    diet_plan(Disease, Diet),
+    format('For ~w, it is recommended: ~n~w~n', [Disease, Diet]).
+
+% Example usage:
+% To get a diet plan suggestion for diabetes:
+% ?- suggest_diet(diabetes).
