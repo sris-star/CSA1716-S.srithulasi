@@ -1,0 +1,31 @@
+% Define symptoms for different diseases
+symptom(flu, fever).
+symptom(flu, cough).
+symptom(flu, headache).
+symptom(cold, runny_nose).
+symptom(cold, sneezing).
+symptom(pneumonia, fever).
+symptom(pneumonia, cough).
+symptom(pneumonia, shortness_of_breath).
+symptom(tonsillitis, sore_throat).
+symptom(tonsillitis, fever).
+symptom(tonsillitis, difficulty_swallowing).
+
+% Define diagnosis rules based on symptoms
+diagnosis(Disease, Patient) :-
+    symptom(Disease, Symptom),
+    patient_has_symptom(Patient, Symptom).
+
+% Define patient symptoms
+patient_has_symptom(john, fever).
+patient_has_symptom(john, cough).
+patient_has_symptom(john, headache).
+
+% Define patient symptoms for another patient
+patient_has_symptom(mary, sore_throat).
+patient_has_symptom(mary, fever).
+patient_has_symptom(mary, difficulty_swallowing).
+
+% Query for diagnosis
+% Example usage: diagnosis(X, john).
+% This will find the disease that matches John's symptoms.
